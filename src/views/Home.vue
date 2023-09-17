@@ -8,14 +8,14 @@
 			/>
 		</header>
 		<div
-			class="flex-col flex mx-auto"
+			class="flex-col flex mx-auto mb-24"
 			style="max-width:320px;width:320px"
 		>
 			<label
 				style="width:calc(100% - 40px);margin:auto;margin-top:40px;margin-bottom:40px"
 				class="text-xl"
 			>
-				1. Select Your Travel Group
+				1. Select Travel Group
 			</label><select
 				class="hover:bg-slate-300 bg-slate-200 transition-shadow hover:drop-shadow-lg drop-shadow p-3 rounded ml-6"
 				style="max-width:270px"
@@ -27,7 +27,7 @@
 			>
 				2. First Name
 			</label><input
-				class="ml-6 p-3 shadow"
+				class="ml-6 p-3 shadow -mt-6"
 				style="max-width:270px"
 			/><label
 				style="width:calc(100% - 40px);margin:auto;margin-top:40px;margin-bottom:40px"
@@ -35,35 +35,32 @@
 			>
 				3. Last Name
 			</label><input
-				class="ml-6 p-3 shadow"
+				class="ml-6 p-3 shadow -mt-6"
 				style="max-width:270px"
-			/><button
+			/><label
+				style="width:calc(100% - 40px);margin:auto;margin-top:40px;margin-bottom:40px"
+				class="text-xl"
+			>
+				4. Select Passport Photo
+			</label><button
 				@click="$router.push('/')"
-				class="hover:bg-slate-300 bg-slate-200 transition-shadow hover:drop-shadow-lg drop-shadow"
+				class="hover:bg-slate-300 bg-slate-200 transition-shadow hover:drop-shadow-lg drop-shadow p-3 rounded ml-6"
+				style="max-width:270px"
 			>
 				Select File
 			</button>
+			<div
+				style="background-size:contain;background-position:center;background-repeat:no-repeat;margin-right:auto;margin-left:auto;margin-top:70px;position:relative;margin-bottom:50px;max-width:calc(100% - 40px);aspect-ratio:1/.668;box-sizing:border-box;width:400px"
+				class="rounded-3xl shadow-slate-200 shadow-xl screenshot"
+			>
+			</div><button
+				@click="$router.push('/contact')"
+				class="bg-purple-400 from-purple-500 bg-gradient-to-br hover:bg-purple-600 hover:from-purple-600 transition-shadow hover:drop-shadow-lg drop-shadow p-3 rounded ml-6 text-white"
+				style="max-width:270px"
+			>
+				Send to See Travel ⇾
+			</button>
 		</div>
-		<main
-			style="width:100%"
-			class="grow"
-		>
-			<section style="width:100%">
-			</section>
-			<section>
-				<div
-					style="background-size:contain;background-position:center;background-repeat:no-repeat;margin-right:auto;margin-left:auto;margin-top:70px;position:relative;margin-bottom:50px;max-width:calc(100% - 40px);aspect-ratio:1/.668;box-sizing:border-box;width:700px"
-					class="rounded-3xl shadow-slate-200 shadow-xl screenshot"
-				>
-				</div><button
-					@click="$router.push('/contact')"
-					class="bg-purple-400 from-purple-500 bg-gradient-to-br hover:bg-purple-600 hover:from-purple-600 text-white duration-300 transition hover:drop-shadow-lg drop-shadow"
-				>
-					Send to See Travel ⇾
-				</button>
-			</section>
-		</main>
-		<Footer class="" />
 	</div>
 </template>
 <script>
