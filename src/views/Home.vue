@@ -6,7 +6,7 @@
 		>
 			<img
 				src="@/assets/seetravel.png"
-				class="mx-auto mt-20"
+				class="mx-auto mt-8"
 			/> <label
 				style="margin:auto;margin-top:40px;margin-bottom:40px"
 				class="text-xl"
