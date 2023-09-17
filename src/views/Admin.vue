@@ -1,8 +1,8 @@
 <template v-for="i in 8">
 	<div class="bg-slate-50">
 		<header>
-			<h1 class="text-6xl mt-12 mb-6">
-				Administrator
+			<h1 class="text-6xl mt-12">
+				Admin Panel
 			</h1>
 		</header>
 		<main style="text-align:center;width:100%;margin-bottom:50px">
@@ -10,17 +10,13 @@
 				class="p-6 xl:grid-cols-1 lg:grid-cols-3 sm:grid-cols-1 container m-auto grid gap-6"
 				v-if="user?.email || user?.value?.email"
 			>
-				<div class="p-6 inline-block shadow-slate-300 shadow rounded bg-white mx-auto">
-					<h3 class="mt-4 mb-3 font-semibold text-2xl text-left">
+				<div class="p-6 inline-block shadow-slate-300 shadow rounded bg-white mx-auto text-center">
+					<h3 class="mb-3 font-semibold text-2xl">
 						{{user?.name || user?.value?.name}}
 					</h3>
-					<p class="text-slate-500 text-left">
+					<p class="text-slate-500">
 						{{user?.email || user?.value?.email}}
 					</p>
-				</div>
-			</section>
-			<section class="p-6 m-auto container">
-				<div class="">
 				</div>
 			</section>
 			<section>
