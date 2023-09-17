@@ -6,23 +6,50 @@
 				class="mx-auto mt-20"
 				style="width:350px;"
 			/>
-			<h2
+		</header>
+		<div
+			class="flex-col flex mx-auto"
+			style="max-width:320px;width:320px"
+		>
+			<label
 				style="width:calc(100% - 40px);margin:auto;margin-top:40px;margin-bottom:40px"
 				class="text-xl"
 			>
-				Upload your passport photo
-			</h2>
-		</header>
+				1. Select Your Travel Group
+			</label><select
+				class="hover:bg-slate-300 bg-slate-200 transition-shadow hover:drop-shadow-lg drop-shadow p-3 rounded ml-6"
+				style="max-width:270px"
+			>
+				<option v-for="i in 3">Option {{i}}</option>
+			</select><label
+				style="width:calc(100% - 40px);margin:auto;margin-top:40px;margin-bottom:40px"
+				class="text-xl"
+			>
+				2. First Name
+			</label><input
+				class="ml-6 p-3 shadow"
+				style="max-width:270px"
+			/><label
+				style="width:calc(100% - 40px);margin:auto;margin-top:40px;margin-bottom:40px"
+				class="text-xl"
+			>
+				3. Last Name
+			</label><input
+				class="ml-6 p-3 shadow"
+				style="max-width:270px"
+			/><button
+				@click="$router.push('/')"
+				class="hover:bg-slate-300 bg-slate-200 transition-shadow hover:drop-shadow-lg drop-shadow"
+			>
+				Select File
+			</button>
+		</div>
 		<main
 			style="width:100%"
 			class="grow"
 		>
-			<section style="width:100%"><button
-					@click="$router.push('/')"
-					class="hover:bg-slate-300 bg-slate-200 transition-shadow hover:drop-shadow-lg drop-shadow"
-				>
-					Select File
-				</button> </section>
+			<section style="width:100%">
+			</section>
 			<section>
 				<div
 					style="background-size:contain;background-position:center;background-repeat:no-repeat;margin-right:auto;margin-left:auto;margin-top:70px;position:relative;margin-bottom:50px;max-width:calc(100% - 40px);aspect-ratio:1/.668;box-sizing:border-box;width:700px"
@@ -52,73 +79,8 @@
 
 </script>
 <style scoped>
-	body,
-	html,
-	#app {
-		margin-top: 0px;
-		margin-left: 0px;
-		margin-bottom: 0px;
-		margin-right: 0px;
-	}
-
-	main {
-		display: inline-block;
-		text-align: center;
-		width: 100%;
-		margin-bottom: 50px;
-	}
-
-	header {
-		text-align: center;
-		font-family: verdana;
-		padding-top: 10px;
-		padding-bottom: 10px;
-	}
-
-	em {
-		font-style: normal;
-		color: #74AE86;
-		background: linear-gradient(45deg, #394657 0%, #74AE86 100%);
-		background-clip: text;
-		text-fill-color: transparent;
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		-moz-background-clip: text;
-		-moz-text-fill-color: transparent;
-	}
-
-	section button {
-		border: none;
-		padding-top: 10px;
-		padding-right: 15px;
-		padding-bottom: 10px;
-		padding-left: 15px;
-		border-top-left-radius: 8px;
-		border-top-right-radius: 8px;
-		border-bottom-left-radius: 8px;
-		border-bottom-right-radius: 8px;
-		font-size: 17px;
-		margin-right: 20px;
-		cursor: pointer;
-		transition: .5s ease background;
-	}
-
-	section button:last-child {
-		margin-right: 0px;
-	}
-
-	.logo {
-		background-image: url(@/assets/your-logo.png);
-	}
-
 	.screenshot {
 		background-image: url(@/assets/launch.png);
-	}
-
-	@media only screen and (max-width: 600px) {
-		.logo {
-			left: 0px;
-		}
 	}
 
 </style>
