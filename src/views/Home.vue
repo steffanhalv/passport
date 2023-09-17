@@ -43,7 +43,7 @@
 			>
 				5. Submit Form
 			</label><button
-				@click="$router.push('/contact')"
+				@click="$router.push('/')"
 				class="bg-purple-400 from-purple-500 bg-gradient-to-br hover:bg-purple-600 hover:from-purple-600 transition-shadow hover:drop-shadow-lg drop-shadow p-3 rounded text-white"
 			>
 				Send to See Travel ⇾
