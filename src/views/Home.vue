@@ -1,35 +1,39 @@
 <template>
 	<div class="from-slate-50 bg-slate-100 w-screen h-screen overflow-auto">
 		<div
-			class="flex-col flex mx-auto mb-24"
+			class="flex-col flex mx-auto mb-24 text-left"
 			style="max-width:320px;width:320px"
 		>
 			<img
 				src="@/assets/seetravel.png"
 				class="mx-auto mt-8"
-			/> <label
+			/>
+			<div
 				style="margin:auto;margin-top:40px;margin-bottom:40px"
 				class="text-xl"
 			>
 				1. Select Travel Group
-			</label><select class="hover:bg-slate-300 bg-slate-200 transition-shadow hover:drop-shadow-lg drop-shadow p-3 rounded">
+			</div><select class="hover:bg-slate-300 bg-slate-200 transition-shadow hover:drop-shadow-lg drop-shadow p-3 rounded">
 				<option v-for="i in 3">Option {{i}}</option>
-			</select><label
+			</select>
+			<div
 				style="margin:auto;margin-top:40px;margin-bottom:40px"
 				class="text-xl"
 			>
 				2. First Name
-			</label><input class="p-3 shadow -mt-6" /><label
+			</div><input class="p-3 shadow -mt-6" />
+			<div
 				style="margin:auto;margin-top:40px;margin-bottom:40px"
 				class="text-xl"
 			>
 				3. Last Name
-			</label><input class="p-3 shadow -mt-6" /><label
+			</div><input class="p-3 shadow -mt-6" />
+			<div
 				style="margin:auto;margin-top:40px;margin-bottom:40px"
 				class="text-xl"
 			>
 				4. Select Passport Photo
-			</label><button
+			</div><button
 				@click="$router.push('/')"
 				class="hover:bg-slate-300 bg-slate-200 transition-shadow hover:drop-shadow-lg drop-shadow p-3 rounded"
 			>
@@ -58,9 +62,4 @@
 	};
 
 </script>
-<style scoped>
-	.screenshot {
-		background-image: url(@/assets/launch.png);
-	}
-
-</style>
+<style scoped></style>
