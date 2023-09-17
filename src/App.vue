@@ -1,8 +1,26 @@
 <template>
-    <router-view /> </template>
+	<div class="bg-sky-950">
+		<router-view />
+		<Login ref="auth" />
+	</div>
+</template>
 <script>
-    export default {
-        data: () => ({})
-    };
+	import Login from "@/components/Login.vue";
+	export default {
+		components: {
+			Login
+		},
+		methods: {
+			async login() {
+				console.log('logging in');
+				return this.$refs?.auth?.login();
+			}
+		},
+		provide() {
+			return {
+				login: this.login
+			};
+		}
+	};
+
 </script>
-<style></style>

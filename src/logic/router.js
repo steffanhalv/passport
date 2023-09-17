@@ -4,17 +4,17 @@ import {
 } from 'vue-router'
 
 const routes = [{
-    path: '/',
-    component: () => import('@/views/Home.vue')
-},
-{
-    path: '/about',
-    component: () => import('@/views/About.vue')
-},
-{
-    path: '/contact',
-    component: () => import('@/views/Contact.vue')
-}
+        path: '/',
+        component: () => import('@/views/Home.vue')
+    },
+    {
+        path: '/login',
+        component: () => import('@/views/Login.vue')
+    },
+    {
+        path: '/admin',
+        component: () => import('@/views/Admin.vue')
+    }
 ]
 
 const router = createRouter({
