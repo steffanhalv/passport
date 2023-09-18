@@ -45,7 +45,12 @@
 				class="flex-col flex mx-auto mb-24 text-left"
 				style="max-width:320px;width:320px"
 			>
-				<select
+				<label
+					style="margin:auto;margin-top:40px;margin-bottom:40px"
+					class="text-xl w-full"
+				>
+					Select Group
+				</label><select
 					v-model="groupSelected"
 					class="hover:bg-slate-300 bg-slate-200 transition-shadow hover:drop-shadow-lg drop-shadow p-3 rounded"
 				>
@@ -53,30 +58,10 @@
 						v-for="group in groups"
 						:value="group"
 					>{{group.title}}</option>
-				</select> <label
-					style="margin:auto;margin-top:40px;margin-bottom:40px"
-					class="text-xl w-full"
-				>
-					2. First Name
-				</label> <input class="p-3 shadow -mt-6" /> <label
-					style="margin:auto;margin-top:40px;margin-bottom:40px"
-					class="text-xl w-full"
-				>
-					3. Last Name
-				</label> <input class="p-3 shadow -mt-6" /> <label
-					style="margin:auto;margin-top:40px;margin-bottom:40px"
-					class="text-xl w-full"
-				>
-					4. Select Passport Photo
-				</label> <img
+				</select> <img
 					:src="placeholder"
 					class="rounded-xl shadow-slate-200 shadow-xl screenshot w-full mt-6"
-				/> <label
-					style="margin:auto;margin-top:40px;margin-bottom:40px"
-					class="text-xl w-full mt-6"
-				>
-					5. Submit Form
-				</label> <button
+				/> <button
 					@click="$router.push('/')"
 					class="bg-purple-400 from-purple-500 bg-gradient-to-br hover:bg-purple-600 hover:from-purple-600 transition-shadow hover:drop-shadow-lg drop-shadow p-3 rounded text-white"
 				>
