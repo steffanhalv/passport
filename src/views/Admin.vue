@@ -120,7 +120,12 @@
 					</button>
 				</div>
 			</div>
-		</section>
+		</section><router-link
+			to="/"
+			class="my-12 text-center hover:text-slate-700"
+		>
+			Home
+		</router-link>
 		<Footer />
 	</div>
 </template>
@@ -199,7 +204,7 @@
 					});
 			},
 			open(src) {
-				window.open(src, '_blank')
+				window.open(src, '_blank');
 			}
 		}
 	};
