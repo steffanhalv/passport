@@ -68,10 +68,11 @@
 					class="mt-2 bg-red-400 from-red-500 bg-gradient-to-br hover:bg-red-600 hover:from-red-600 transition-shadow hover:drop-shadow-lg drop-shadow p-3 rounded text-white"
 				>
 					Delete {{selected?.title}}
-				</button> <img
-					:src="placeholder"
-					class="rounded-xl shadow-slate-200 shadow-xl screenshot w-full mt-6"
-				/>
+				</button>
+				<div v-for="passport in passports"><img
+						:src="passport.image ||placeholder"
+						class="rounded-xl shadow-slate-200 shadow-xl screenshot w-full mt-6"
+					/></div>
 			</div>
 		</section>
 		<Footer />
@@ -90,6 +91,11 @@
 		}),
 		async mounted() {
 			await this.listGroups();
+		},
+		watch: {
+			async selected() {
+				await this.listPassports();
+			}
 		},
 		methods: {
 			async add() {
@@ -129,8 +135,8 @@
 							group_id: this.selected._id,
 							$limit: 1000
 						}
-					})
-				console.log('passports', this.passports)
+					});
+				console.log('passports', this.passports);
 			}
 		}
 	};
