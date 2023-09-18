@@ -109,12 +109,12 @@
 				<div class="w-1/4 text-right">
 					<button
 						@click="removeSingle(passport)"
-						class="bg-red-400 from-red-500 bg-gradient-to-br hover:bg-red-600 hover:from-red-600 transition-shadow hover:drop-shadow-lg drop-shadow p-1 mr-1 rounded text-white"
+						class="bg-red-400 from-red-500 bg-gradient-to-br hover:bg-red-600 hover:from-red-600 transition-shadow hover:drop-shadow-lg drop-shadow p-2 mr-3 rounded text-white"
 					>
 						Delete
 					</button><button
 						@click="save(passport)"
-						class="bg-green-400 from-green-500 bg-gradient-to-br hover:bg-green-600 hover:from-green-600 transition-shadow hover:drop-shadow-lg drop-shadow p-1 rounded text-white"
+						class="bg-green-400 from-green-500 bg-gradient-to-br hover:bg-green-600 hover:from-green-600 transition-shadow hover:drop-shadow-lg drop-shadow p-2 rounded text-white"
 					>
 						Save
 					</button>
