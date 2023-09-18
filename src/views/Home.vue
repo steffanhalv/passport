@@ -7,14 +7,12 @@
 			<img
 				src="@/assets/seetravel.png"
 				class="mx-auto mt-8"
-			/>
-			<label
+			/> <label
 				style="margin:auto;margin-top:40px;margin-bottom:40px"
 				class="text-xl w-full"
 			>
 				1. Select Travel Group
-			</label>
-			<select
+			</label> <select
 				v-model="groupSelected"
 				class="hover:bg-slate-300 bg-slate-200 transition-shadow hover:drop-shadow-lg drop-shadow p-3 rounded"
 			>
@@ -22,44 +20,35 @@
 					v-for="group in groups"
 					:value="group"
 				>{{group.title}}</option>
-			</select>
-			<label
+			</select> <label
 				style="margin:auto;margin-top:40px;margin-bottom:40px"
 				class="text-xl w-full"
 			>
 				2. First Name
-			</label>
-			<input class="p-3 shadow -mt-6" />
-			<label
+			</label> <input class="p-3 shadow -mt-6" /> <label
 				style="margin:auto;margin-top:40px;margin-bottom:40px"
 				class="text-xl w-full"
 			>
 				3. Last Name
-			</label>
-			<input class="p-3 shadow -mt-6" />
-			<label
+			</label> <input class="p-3 shadow -mt-6" /> <label
 				style="margin:auto;margin-top:40px;margin-bottom:40px"
 				class="text-xl w-full"
 			>
 				4. Select Passport Photo
-			</label>
-			<button
+			</label> <button
 				@click="select"
 				class="hover:bg-slate-300 bg-slate-200 transition-shadow hover:drop-shadow-lg drop-shadow p-3 rounded"
 			>
 				Select File
-			</button>
-			<img
+			</button> <img
 				:src="preview || placeholder"
 				class="rounded-xl shadow-slate-200 shadow-xl screenshot w-full mt-6"
-			/>
-			<label
+			/> <label
 				style="margin:auto;margin-top:40px;margin-bottom:40px"
 				class="text-xl w-full mt-6"
 			>
 				5. Submit Form
-			</label>
-			<button
+			</label> <button
 				@click="$router.push('/')"
 				class="bg-purple-400 from-purple-500 bg-gradient-to-br hover:bg-purple-600 hover:from-purple-600 transition-shadow hover:drop-shadow-lg drop-shadow p-3 rounded text-white"
 			>
@@ -85,35 +74,35 @@
 						$limit: 1000
 					}
 				})
-				?.data
+				?.data;
 			if (!this.groupSelected) {
-				this.groupSelected = this.groups?.[0]
+				this.groupSelected = this.groups?.[0];
 			}
 		},
 		methods: {
 			select() {
-				let input = document.createElement("input")
-				input.type = "file"
-				input.accept = "image/*"
+				let input = document.createElement("input");
+				input.type = "file";
+				input.accept = "image/*";
 				input.onchange = async () => {
 					const file = Array.from(input.files)
-						?.[0]
+						?.[0];
 					if (file) {
-						this.file = file
-						const reader = new FileReader()
-						reader.readAsDataURL(file)
-						reader.onload = () => this.preview = reader.result
-						reader.onerror = () => this.preview = ''
+						this.file = file;
+						const reader = new FileReader();
+						reader.readAsDataURL(file);
+						reader.onload = () => this.preview = reader.result;
+						reader.onerror = () => this.preview = '';
 					}
 				};
-				input.click()
+				input.click();
 			},
 			async upload() {
 				return this.io.service("types/media")
 					.create({
 						name: this.file.name,
 						file: await this.file.arrayBuffer()
-					})
+					});
 			}
 		}
 	};
