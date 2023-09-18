@@ -87,8 +87,8 @@
 				/>
 				<div class="w-1/4 text-right">
 					<button
-						@click="remove(passpo)"
-						class="bg-blue-400 from-blue-500 bg-gradient-to-br hover:bg-blue-600 hover:from-blue-600 transition-shadow hover:drop-shadow-lg drop-shadow p-3 rounded text-white"
+						@click="remove(passport)"
+						class="bg-red-400 from-red-500 bg-gradient-to-br hover:bg-red-600 hover:from-red-600 transition-shadow hover:drop-shadow-lg drop-shadow p-3 rounded text-white"
 					>
 						Delete
 					</button>
