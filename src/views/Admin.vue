@@ -81,7 +81,7 @@
 			/>
 			<div
 				v-for="passport in filtered"
-				class="border-b mx-auto mb-2 max-w-3xl flex-row flex relative pb-2"
+				class="items-center border-b mx-auto mb-2 max-w-3xl flex-row flex relative pb-2"
 				style="max-height:100px"
 			>
 				<div class="w-1/4"><input
@@ -99,8 +99,8 @@
 				<div class="relative w-1/4 max-h-full">
 					<img
 						:src="passport.image || placeholder"
-						class="cursor-pointer object-left object-cover mx-auto"
-						style="max-height:calc(100% - 35px)"
+						class="cursor-pointer object-center object-contain mx-auto pb-9"
+						style="max-height:90px;width:100%"
 						@click="open(passport.image || placeholder)"
 					/><a
 						class="bg-slate-400 from-slate-500 bg-gradient-to-br hover:bg-slate-600 hover:from-slate-600 transition-shadow hover:drop-shadow-lg drop-shadow p-1 rounded text-white absolute bottom-0"
@@ -119,7 +119,7 @@
 						Delete
 					</button><button
 						@click="save(passport)"
-						class="bg-green-400 from-green-500 bg-gradient-to-br hover:bg-green-600 hover:from-green-600 transition-shadow hover:drop-shadow-lg drop-shadow p-2 rounded text-white"
+						class="bg-emerald-400 from-emerald-500 bg-gradient-to-br hover:bg-emerald-600 hover:from-emerald-600 transition-shadow hover:drop-shadow-lg drop-shadow p-2 rounded text-white"
 					>
 						Save
 					</button>
