@@ -7,14 +7,12 @@
 			<img
 				src="@/assets/seetravel.png"
 				class="mx-auto mt-8"
-			/>
-			<label
+			/> <label
 				style="margin:auto;margin-top:40px;margin-bottom:40px"
 				class="text-xl w-full"
 			>
 				1. Select Travel Group
-			</label>
-			<select
+			</label> <select
 				v-model="groupSelected"
 				class="hover:bg-slate-300 bg-slate-200 transition-shadow hover:drop-shadow-lg drop-shadow p-3 rounded"
 			>
@@ -24,14 +22,12 @@
 				>
 					{{group.title}}
 				</option>
-			</select>
-			<label
+			</select> <label
 				style="margin:auto;margin-top:40px;margin-bottom:40px"
 				class="text-xl w-full"
 			>
 				2. First Name
-			</label>
-			<input
+			</label> <input
 				class="p-3 shadow -mt-6"
 				v-model="firstname"
 			/> <label
@@ -39,38 +35,39 @@
 				class="text-xl w-full"
 			>
 				3. Last Name
-			</label>
-			<input
+			</label> <input
 				class="p-3 shadow -mt-6"
 				v-model="lastname"
-			/>
-			<label
+			/> <label
 				style="margin:auto;margin-top:40px;margin-bottom:40px"
 				class="text-xl w-full"
 			>
 				4. Select Passport Photo
-			</label>
-			<button
+			</label> <button
 				@click="select"
 				class="hover:bg-slate-300 bg-slate-200 transition-shadow hover:drop-shadow-lg drop-shadow p-3 rounded"
 			>
 				Select File
-			</button>
-			<img
+			</button> <img
 				:src="preview || placeholder"
 				class="rounded-xl shadow-slate-200 shadow-xl screenshot w-full mt-6"
-			/>
-			<label
+			/> <label
 				style="margin:auto;margin-top:40px;margin-bottom:40px"
 				class="text-xl w-full mt-6"
 			>
 				5. Submit Form
-			</label>
-			<button
+			</label> <button
 				@click="submit"
 				class="bg-purple-400 from-purple-500 bg-gradient-to-br hover:bg-purple-600 hover:from-purple-600 transition-shadow hover:drop-shadow-lg drop-shadow p-3 rounded text-white"
+				v-if="!loading"
 			>
 				Send to See Travel ⇾
+			</button><button
+				class="opacity-40 bg-purple-400 from-purple-500 bg-gradient-to-br hover:bg-purple-600 hover:from-purple-600 transition-shadow hover:drop-shadow-lg drop-shadow p-3 rounded text-white"
+				disabled=""
+				v-else=""
+			>
+				Please Wait...
 			</button>
 		</div>
 	</div>
@@ -85,7 +82,8 @@
 			file: null,
 			firstname: '',
 			lastname: '',
-			groups: []
+			groups: [],
+			loading: false
 		}),
 		async mounted() {
 			this.groups = (await this.io.service('types/groups')
@@ -125,12 +123,13 @@
 					});
 			},
 			async submit() {
+				this.loading = true;
 				try {
-					if (!this.firstname) return alert('Firstname is required')
-					if (!this.lastname) return alert('Lastname is required')
-					if (!this.groupSelected) return alert('Group is required')
-					if (!this.file?.name) return alert('Passport image is required')
-					const media = await this.upload()
+					if (!this.firstname) return alert('First Name is required');
+					if (!this.lastname) return alert('Last Name is required');
+					if (!this.groupSelected) return alert('Group is required');
+					if (!this.file?.name) return alert('Passport Image is required');
+					const media = await this.upload();
 					await this.io.service("types/passports")
 						.create({
 							first_name: this.firstname,
@@ -138,17 +137,19 @@
 							group_id: this.groupSelected._id,
 							media_id: media._id
 						});
-					alert('Thank you, your passport has been submitted!')
-					this.reset()
+					alert('Thank you, your passport has been submitted!');
+					this.reset();
 				} catch (e) {
-					alert('Oops, your passport could not be submitted. Please try again or contact support.')
-					console.error(e)
+					alert('Oops, your passport could not be submitted. Please try again or contact support.');
+					console.error(e);
 				}
+				this.loading = false;
 			},
 			reset() {
-				this.file = null
-				this.firstname = ''
-				this.lastname = ''
+				this.file = null;
+				this.firstname = '';
+				this.lastname = '';
+				this.preview = '';
 			}
 		}
 	};
