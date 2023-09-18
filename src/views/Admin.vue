@@ -76,24 +76,39 @@
 			</div>
 			<div
 				v-for="passport in passports?.data || []"
-				class="mx-auto mb-1 max-w-xl flex-row flex relative"
+				class="border-b mx-auto mb-2 max-w-3xl flex-row flex relative pb-2"
 				style="max-height:100px"
 			>
 				<div class="w-1/4"><input
-						class="w-full p-2 rounded shadow"
+						class="p-2 rounded shadow"
 						v-model="passport.first_name"
+						style="width:calc(100% - 10px)"
 					/> </div>
-				<div class="w-1/4"><input
+				<div class="w-1/4">
+					<input
 						class="w-full p-2 rounded shadow"
 						v-model="passport.last_name"
-					/> </div>
-				<div class="w-1/4 max-h-full"><img
+						style="width:calc(100% - 10px)"
+					/>
+				</div>
+				<div class="relative w-1/4 max-h-full">
+					<img
 						:src="passport.image || placeholder"
-						class="max-h-full object-left object-cover mx-auto"
-					/></div>
+						class="cursor-pointer object-left object-cover mx-auto"
+						style="max-height:calc(100% - 35px)"
+						@click="open(passport.image || placeholder)"
+					/><a
+						class="bg-slate-400 from-slate-500 bg-gradient-to-br hover:bg-slate-600 hover:from-slate-600 transition-shadow hover:drop-shadow-lg drop-shadow p-1 rounded text-white absolute bottom-0"
+						style="left:50%;transform:translateX(-50%)"
+						:href="passport.image || placeholder"
+						download=""
+					>
+						Download
+					</a>
+				</div>
 				<div class="w-1/4 text-right">
 					<button
-						@click="remove(passport)"
+						@click="removeSingle(passport)"
 						class="bg-red-400 from-red-500 bg-gradient-to-br hover:bg-red-600 hover:from-red-600 transition-shadow hover:drop-shadow-lg drop-shadow p-1 mr-1 rounded text-white"
 					>
 						Delete
@@ -132,10 +147,12 @@
 			}
 		},
 		methods: {
-			async remove(passport) {
-				await this.io.service('/types/passports')
-					.remove(passport._id);
-				this.passports.data = this.passports.data.filter(p => p._id !== passport._id);
+			async removeSingle(passport) {
+				if (passport && confirm('Remove ' + passport.title + '?')) {
+					await this.io.service('/types/passports')
+						.remove(passport._id);
+					this.passports.data = this.passports.data.filter(p => p._id !== passport._id);
+				}
 			},
 			async save(passport) {
 				await this.io.service('/types/passports')
@@ -153,7 +170,7 @@
 				this.selected = this.groups.find(g => g._id === added._id);
 			},
 			async remove() {
-				if (this.selected && confirm('Remove ' + this.selected.title + '?')) {
+				if (confirm('Delete group including all passports?')) {
 					await this.io.service('/types/groups')
 						.remove(this.selected._id);
 					await this.listGroups();
@@ -180,6 +197,9 @@
 							$limit: 1000
 						}
 					});
+			},
+			open(src) {
+				window.open(src, '_blank')
 			}
 		}
 	};
