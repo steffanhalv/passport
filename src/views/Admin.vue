@@ -116,7 +116,7 @@
 						@click="removeSingle(passport)"
 						class="bg-red-400 from-red-500 bg-gradient-to-br hover:bg-red-600 hover:from-red-600 transition-shadow hover:drop-shadow-lg drop-shadow p-2 mr-3 rounded text-white"
 					>
-						Delete
+						Remove
 					</button><button
 						@click="save(passport)"
 						class="bg-emerald-400 from-emerald-500 bg-gradient-to-br hover:bg-emerald-600 hover:from-emerald-600 transition-shadow hover:drop-shadow-lg drop-shadow p-2 rounded text-white"
@@ -169,7 +169,7 @@
 		},
 		methods: {
 			async removeSingle(passport) {
-				if (passport && confirm('Remove ' + passport.title + '?')) {
+				if (passport && confirm('Remove ' + passport.first_name + ' ' + passport.last_name + '?')) {
 					await this.io.service('/types/passports')
 						.remove(passport._id);
 					this.passports.data = this.passports.data.filter(p => p._id !== passport._id);
