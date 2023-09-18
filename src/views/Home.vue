@@ -33,7 +33,7 @@
 			</label>
 			<input
 				class="p-3 shadow -mt-6"
-				v-bind="firstname"
+				v-model="firstname"
 			/> <label
 				style="margin:auto;margin-top:40px;margin-bottom:40px"
 				class="text-xl w-full"
