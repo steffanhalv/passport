@@ -70,10 +70,29 @@
 				>
 					Delete {{selected?.title}}
 				</button>
-				<div v-for="passport in passports?.data || []"><img
-						:src="passport.image || placeholder"
-						class="rounded-xl shadow-slate-200 shadow-xl screenshot w-full mt-6"
-					/></div>
+			</div>
+			<div
+				v-for="passport in passports?.data || []"
+				class="mx-auto max-w-xl flex-row flex relative"
+				style="max-height:100px"
+			>
+				<div class="w-1/4">
+					{{passport.first_name}}
+				</div>
+				<div class="w-1/4">
+					{{passport.last_name}}
+				</div><img
+					:src="passport.image || placeholder"
+					class="w-1/4 max-h-full object-left object-cover"
+				/>
+				<div class="w-1/4 text-right">
+					<button
+						@click="remove(passpo)"
+						class="bg-blue-400 from-blue-500 bg-gradient-to-br hover:bg-blue-600 hover:from-blue-600 transition-shadow hover:drop-shadow-lg drop-shadow p-3 rounded text-white"
+					>
+						Delete
+					</button>
+				</div>
 			</div>
 		</section>
 		<Footer />
