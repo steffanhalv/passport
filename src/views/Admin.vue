@@ -74,7 +74,7 @@
 					Delete {{selected?.title}}
 				</button>
 			</div><input
-				class="p-2 rounded shadow mb-12"
+				class="p-2 rounded shadow mb-12 max-w-3xl"
 				v-model="filter"
 				style="width:calc(100% - 10px)"
 				placeholder="Filter..."
