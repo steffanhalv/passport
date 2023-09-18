@@ -111,14 +111,14 @@
 					const file = Array.from(input.files)
 						?.[0];
 					if (file) {
-						if (file.size <= 20000000) {
+						if (file.size <= 40000000) {
 							this.file = file;
 							const reader = new FileReader();
 							reader.readAsDataURL(file);
 							reader.onload = () => this.preview = reader.result;
 							reader.onerror = () => this.preview = '';
 						} else {
-							alert('Image have to be smaller than 20MB, resize and try again')
+							alert('Image have to be smaller than 40MB, resize and try again')
 						}
 					}
 				};
