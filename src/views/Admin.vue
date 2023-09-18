@@ -101,7 +101,7 @@
 						class="bg-slate-400 from-slate-500 bg-gradient-to-br hover:bg-slate-600 hover:from-slate-600 transition-shadow hover:drop-shadow-lg drop-shadow p-1 rounded text-white absolute bottom-0"
 						style="left:50%;transform:translateX(-50%)"
 						:href="passport.image || placeholder"
-						download=""
+						:download="passport.media.original_name"
 					>
 						Download
 					</a>
