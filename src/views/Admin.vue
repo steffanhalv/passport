@@ -40,7 +40,7 @@
 				</button>
 			</section>
 		</main>
-		<section class="bg-slate-100 p-6">
+		<section class="p-4 bg-slate-100">
 			<div
 				class="flex-col flex mx-auto mb-24 text-left"
 				style="max-width:320px;width:320px"
@@ -58,15 +58,15 @@
 						v-for="group in groups"
 						:value="group"
 					>{{group.title}}</option>
-				</select> <img
+				</select><button
+					@click="$router.push('/')"
+					class="mt-2 bg-purple-400 from-purple-500 bg-gradient-to-br hover:bg-purple-600 hover:from-purple-600 transition-shadow hover:drop-shadow-lg drop-shadow p-3 rounded text-white"
+				>
+					Add New Group ⇾
+				</button> <img
 					:src="placeholder"
 					class="rounded-xl shadow-slate-200 shadow-xl screenshot w-full mt-6"
-				/> <button
-					@click="$router.push('/')"
-					class="bg-purple-400 from-purple-500 bg-gradient-to-br hover:bg-purple-600 hover:from-purple-600 transition-shadow hover:drop-shadow-lg drop-shadow p-3 rounded text-white"
-				>
-					Send to See Travel ⇾
-				</button>
+				/>
 			</div>
 		</section>
 		<Footer />
