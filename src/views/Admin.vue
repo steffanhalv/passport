@@ -126,6 +126,9 @@
 		watch: {
 			async selected() {
 				await this.listPassports();
+			},
+			async 'user.name'() {
+				await this.listPassports();
 			}
 		},
 		methods: {
