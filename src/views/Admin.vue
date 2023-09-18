@@ -47,7 +47,7 @@
 			>
 				<button
 					@click="add"
-					class="mt-4 bg-purple-400 from-purple-500 bg-gradient-to-br hover:bg-purple-600 hover:from-purple-600 transition-shadow hover:drop-shadow-lg drop-shadow p-3 rounded text-white"
+					class="mt-4 bg-blue-400 from-blue-500 bg-gradient-to-br hover:bg-blue-600 hover:from-blue-600 transition-shadow hover:drop-shadow-lg drop-shadow p-3 rounded text-white"
 				>
 					Add New Group ⇾
 				</button><label
