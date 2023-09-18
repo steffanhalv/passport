@@ -59,7 +59,7 @@
 						:value="group"
 					>{{group.title}}</option>
 				</select><button
-					@click="$router.push('/')"
+					@click="add"
 					class="mt-2 bg-purple-400 from-purple-500 bg-gradient-to-br hover:bg-purple-600 hover:from-purple-600 transition-shadow hover:drop-shadow-lg drop-shadow p-3 rounded text-white"
 				>
 					Add New Group ⇾
@@ -83,20 +83,27 @@
 			groups: []
 		}),
 		async mounted() {
-			this.groups = this.io.service('types/groups')
-				.find({
-					query: {
-						$limit: 1000
-					}
-				})
-				?.data;
-			if (!this.groupSelected) {
-				this.groupSelected = this.groups?.[0];
-			}
+			await this.listGroups();
 		},
 		methods: {
-			open(url) {
-				location.href = url;
+			async add() {
+				await this.io.service('types/groups')
+					.create({
+						title: prompt('Group Title')
+					});
+				await this.listGroups();
+			},
+			async listGroups() {
+				this.groups = this.io.service('types/groups')
+					.find({
+						query: {
+							$limit: 1000
+						}
+					})
+					?.data;
+				if (!this.groupSelected) {
+					this.groupSelected = this.groups?.[0];
+				}
 			}
 		}
 	};
