@@ -7,25 +7,31 @@
 			<img
 				src="@/assets/seetravel.png"
 				class="mx-auto mt-8"
-			/> <label
+			/>
+			<label
 				style="margin:auto;margin-top:40px;margin-bottom:40px"
 				class="text-xl w-full"
 			>
 				1. Select Travel Group
-			</label> <select
+			</label>
+			<select
 				v-model="groupSelected"
 				class="hover:bg-slate-300 bg-slate-200 transition-shadow hover:drop-shadow-lg drop-shadow p-3 rounded"
 			>
 				<option
 					v-for="group in groups"
 					:value="group"
-				>{{group.title}}</option>
-			</select> <label
+				>
+					{{group.title}}
+				</option>
+			</select>
+			<label
 				style="margin:auto;margin-top:40px;margin-bottom:40px"
 				class="text-xl w-full"
 			>
 				2. First Name
-			</label> <input
+			</label>
+			<input
 				class="p-3 shadow -mt-6"
 				v-bind="firstname"
 			/> <label
@@ -33,29 +39,35 @@
 				class="text-xl w-full"
 			>
 				3. Last Name
-			</label> <input
+			</label>
+			<input
 				class="p-3 shadow -mt-6"
 				v-model="lastname"
-			/> <label
+			/>
+			<label
 				style="margin:auto;margin-top:40px;margin-bottom:40px"
 				class="text-xl w-full"
 			>
 				4. Select Passport Photo
-			</label> <button
+			</label>
+			<button
 				@click="select"
 				class="hover:bg-slate-300 bg-slate-200 transition-shadow hover:drop-shadow-lg drop-shadow p-3 rounded"
 			>
 				Select File
-			</button> <img
+			</button>
+			<img
 				:src="preview || placeholder"
 				class="rounded-xl shadow-slate-200 shadow-xl screenshot w-full mt-6"
-			/> <label
+			/>
+			<label
 				style="margin:auto;margin-top:40px;margin-bottom:40px"
 				class="text-xl w-full mt-6"
 			>
 				5. Submit Form
-			</label> <button
-				@click="$router.push('/')"
+			</label>
+			<button
+				@click="submit"
 				class="bg-purple-400 from-purple-500 bg-gradient-to-br hover:bg-purple-600 hover:from-purple-600 transition-shadow hover:drop-shadow-lg drop-shadow p-3 rounded text-white"
 			>
 				Send to See Travel ⇾
@@ -111,6 +123,32 @@
 						name: this.file.name,
 						file: await this.file.arrayBuffer()
 					});
+			},
+			async submit() {
+				try {
+					if (!this.firstname) return alert('Firstname is required')
+					if (!this.lastname) return alert('Lastname is required')
+					if (!this.groupSelected) return alert('Group is required')
+					if (!this.file?.name) return alert('Passport image is required')
+					const media = await this.upload()
+					await this.io.service("types/passports")
+						.create({
+							first_name: this.firstname,
+							last_name: this.lastname,
+							group_id: this.groupSelected._id,
+							media_id: media._id
+						});
+					alert('Thank you, your passport has been submitted!')
+					this.reset()
+				} catch (e) {
+					alert('Oops, your passport could not be submitted. Please try again or contact support.')
+					console.error(e)
+				}
+			},
+			reset() {
+				this.file = null
+				this.firstname = ''
+				this.lastname = ''
 			}
 		}
 	};
