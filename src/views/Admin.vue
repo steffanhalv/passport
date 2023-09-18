@@ -3,8 +3,9 @@
 		<header>
 			<img
 				src="@/assets/seetravel.png"
-				class="mx-auto mt-8"
+				class="cursor-pointer mx-auto mt-8"
 				style="max-width:320px"
+				@click="$router.push('/')"
 			/>
 			<h1 class="mb-8 text-center text-6xl mt-12">
 				Admin Panel
