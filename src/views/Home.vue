@@ -33,7 +33,10 @@
 				class="text-xl w-full"
 			>
 				3. Last Name
-			</label> <input class="p-3 shadow -mt-6" /> <label
+			</label> <input
+				class="p-3 shadow -mt-6"
+				v-model="lastname"
+			/> <label
 				style="margin:auto;margin-top:40px;margin-bottom:40px"
 				class="text-xl w-full"
 			>
