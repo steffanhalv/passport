@@ -73,7 +73,7 @@
 			</div>
 			<div
 				v-for="passport in passports?.data || []"
-				class="mx-auto max-w-xl flex-row flex relative"
+				class="mx-auto mb-1 max-w-xl flex-row flex relative"
 				style="max-height:100px"
 			>
 				<div class="w-1/4">
@@ -118,6 +118,10 @@
 			}
 		},
 		methods: {
+			async remove(passport) {
+				await this.io.service('/types/passports')
+					.remove(passport._id);
+			},
 			async add() {
 				const title = prompt('Group Title');
 				if (!title) return;
