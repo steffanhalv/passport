@@ -87,19 +87,19 @@
 		},
 		methods: {
 			async add() {
-				await this.io.service('types/groups')
+				await this.io.service('/types/groups')
 					.create({
 						title: prompt('Group Title')
 					});
 				await this.listGroups();
 			},
 			async listGroups() {
-				this.groups = this.io.service('types/groups')
-					.find({
-						query: {
-							$limit: 1000
-						}
-					})
+				this.groups = (await this.io.service('/types/groups')
+						.find({
+							query: {
+								$limit: 1000
+							}
+						}))
 					?.data;
 				if (!this.groupSelected) {
 					this.groupSelected = this.groups?.[0];
