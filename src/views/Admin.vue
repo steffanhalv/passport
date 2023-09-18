@@ -76,21 +76,29 @@
 				class="mx-auto mb-1 max-w-xl flex-row flex relative"
 				style="max-height:100px"
 			>
-				<div class="w-1/4">
-					{{passport.first_name}}
-				</div>
-				<div class="w-1/4">
-					{{passport.last_name}}
-				</div><img
-					:src="passport.image || placeholder"
-					class="w-1/4 max-h-full object-left object-cover"
-				/>
+				<div class="w-1/4"><input
+						class="w-full p-2 rounded shadow"
+						v-model="passport.first_name"
+					/> </div>
+				<div class="w-1/4"><input
+						class="w-full p-2 rounded shadow"
+						v-model="passport.last_name"
+					/> </div>
+				<div class="w-1/4 max-h-full"><img
+						:src="passport.image || placeholder"
+						class="max-h-full object-left object-cover mx-auto"
+					/></div>
 				<div class="w-1/4 text-right">
 					<button
 						@click="remove(passport)"
-						class="bg-red-400 from-red-500 bg-gradient-to-br hover:bg-red-600 hover:from-red-600 transition-shadow hover:drop-shadow-lg drop-shadow p-3 rounded text-white"
+						class="bg-red-400 from-red-500 bg-gradient-to-br hover:bg-red-600 hover:from-red-600 transition-shadow hover:drop-shadow-lg drop-shadow p-1 mr-1 rounded text-white"
 					>
 						Delete
+					</button><button
+						@click="save(passport)"
+						class="bg-green-400 from-green-500 bg-gradient-to-br hover:bg-green-600 hover:from-green-600 transition-shadow hover:drop-shadow-lg drop-shadow p-1 rounded text-white"
+					>
+						Save
 					</button>
 				</div>
 			</div>
@@ -121,6 +129,12 @@
 			async remove(passport) {
 				await this.io.service('/types/passports')
 					.remove(passport._id);
+				this.passports.data = this.passports.data.filter(p => p._id !== passport._id);
+			},
+			async save(passport) {
+				await this.io.service('/types/passports')
+					.patch(passport._id, passport);
+				alert('Updated');
 			},
 			async add() {
 				const title = prompt('Group Title');
@@ -160,7 +174,6 @@
 							$limit: 1000
 						}
 					});
-				console.log('passports', this.passports);
 			}
 		}
 	};
