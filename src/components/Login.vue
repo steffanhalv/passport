@@ -9,11 +9,11 @@
 			@click="authorizing = false"
 		>
 			<div
-				class="shadow-xl rounded -translate-y-1/2 -translate-x-1/2 top-1/2 left-1/2 fixed block m-auto max-w-sm w-screen bg-slate-100 border-box text-center py-12"
+				class="shadow-xl rounded-2xl -translate-y-1/2 -translate-x-1/2 top-1/2 left-1/2 fixed block m-auto max-w-sm w-screen bg-slate-100 border-box text-center py-12"
 				@click.stop=""
 			>
 				<button
-					class="w-64 mb-2 inline-flex items-center bg-white border border-gray-300 rounded-lg shadow-md px-6 py-2 text-sm font-medium text-gray-800 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+					class="w-64 mb-2 inline-flex items-center bg-white border border-gray-300 rounded-lg shadow-md px-6 py-4 text-sm font-medium text-gray-800 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
 					@click="autologin('google')"
 				>
 					<svg
@@ -66,17 +66,13 @@
 								</g>
 							</g>
 						</g>
-					</svg>
-					<span>Continue with Google</span>
-				</button>
-				<button
-					class="w-64 inline-flex items-center bg-white border border-gray-300 rounded-lg shadow-md px-6 py-2 text-sm font-medium text-gray-800 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+					</svg> <span class="ml-4">Continue with Google</span> </button> <button
+					class="w-64 inline-flex items-center bg-slate-50 border border-gray-300 rounded-lg shadow-md px-6 py-4 text-sm font-medium text-center text-gray-800 hover:bg-slate-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 mt-6"
 					@click="authorizing = false"
 				>
-					<span>
+					<span class="mx-auto">
 						Cancel
-					</span>
-				</button>
+					</span> </button>
 			</div>
 		</div>
 	</Transport>
@@ -95,13 +91,13 @@
 				return new Promise(resolve => {
 					if (this.user && this.user.value !== null) {
 						this.authorizing = false;
-						resolve(this.user)
+						resolve(this.user);
 					} else {
 						this.$watch("authorizing", authorizing => {
-							if (!authorizing) resolve(this.user)
-						})
+							if (!authorizing) resolve(this.user);
+						});
 					}
-				})
+				});
 			},
 			autologin(provider) {
 				let w = 500;
@@ -109,16 +105,16 @@
 				let y = window.top.outerHeight / 2 + window.top.screenY - h / 1.5;
 				let x = window.top.outerWidth / 2 + window.top.screenX - w / 2;
 				let ref = window.open("https://passport.vueplay.com/oauth/" + provider + "?origin=" + this.origin + "/auth", "_blank", `popup=true, toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=${w}, height=${h}, top=${y}, left=${x}`);
-				this.validateLogin(ref)
+				this.validateLogin(ref);
 			},
 			async validateLogin(ref, tries = 0) {
 				let token = "";
 				let error = "";
 				try {
-					token = this.getToken(ref.location.hash)
+					token = this.getToken(ref.location.hash);
 				} catch (e) {}
 				try {
-					error = this.getError(ref.location.hash)
+					error = this.getError(ref.location.hash);
 				} catch (e) {}
 				if (!ref.closed && !error && !token && tries < 1000000000000) setTimeout(() => this.validateLogin(ref, ++tries), 100);
 				else if (!ref.closed) ref.close();
@@ -132,21 +128,21 @@
 					} else if (tries >= 1000000000000) {
 						this.authorizing = false;
 					}
-				})
+				});
 			},
 			getToken(hash) {
 				if (hash.startsWith("#access_token=")) {
 					let token = hash.replace("#access_token=", "");
-					return token
+					return token;
 				}
-				return ""
+				return "";
 			},
 			getError(hash) {
 				if (hash.startsWith("#error=")) {
 					let error = hash.replace("#error=", "");
-					return error
+					return error;
 				}
-				return ""
+				return "";
 			}
 		}
 	};
