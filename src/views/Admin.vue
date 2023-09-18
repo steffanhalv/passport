@@ -69,8 +69,8 @@
 				>
 					Delete {{selected?.title}}
 				</button>
-				<div v-for="passport in passports"><img
-						:src="passport.image ||placeholder"
+				<div v-for="passport in passports?.data || []"><img
+						:src="passport.image || placeholder"
 						class="rounded-xl shadow-slate-200 shadow-xl screenshot w-full mt-6"
 					/></div>
 			</div>
