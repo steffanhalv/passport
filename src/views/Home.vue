@@ -68,7 +68,12 @@
 				v-else=""
 			>
 				Please Wait...
-			</button>
+			</button><router-link
+				to="/admin"
+				class="mt-12 text-center hover:text-slate-700"
+			>
+				Admin Panel
+			</router-link>
 		</div>
 	</div>
 </template>

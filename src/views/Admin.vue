@@ -41,7 +41,10 @@
 				</button>
 			</section>
 		</main>
-		<section class="p-4 bg-slate-100">
+		<section
+			class="p-4 bg-slate-100"
+			v-if="user?.email || user?.value?.email"
+		>
 			<div
 				class="flex-col flex mx-auto mb-24 text-left"
 				style="max-width:320px;width:320px"
