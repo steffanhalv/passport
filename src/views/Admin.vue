@@ -74,7 +74,7 @@
 					Delete {{selected?.title}}
 				</button>
 			</div><input
-				class="p-2 rounded shadow mb-12 max-w-3xl"
+				class="p-2 rounded shadow mb-12 max-w-3xl mx-auto block"
 				v-model="filter"
 				style="width:calc(100% - 10px)"
 				placeholder="Filter..."
@@ -148,7 +148,9 @@
 		}),
 		watch: {
 			async selected() {
-				await this.listPassports();
+				if (this.user?.name || this.user?.value?.name) {
+					await this.listPassports();
+				}
 			},
 			async 'user.name'() {
 				await this.listPassports();
