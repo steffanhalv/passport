@@ -72,11 +72,9 @@
 					@click="downloadGroup"
 					class="bg-green-400 from-green-500 mt-4 disabled:opacity-50 bg-gradient-to-br hover:bg-green-600 hover:from-green-600 transition-shadow hover:drop-shadow-lg drop-shadow p-3 rounded text-white"
 				>
-					<span v-if="!downloading">Download Passports for {{selected?.title}}</span>
-					<span v-else>Please wait...</span>
-				</button><button
+					<span v-if="!downloading">Download Passports for {{selected?.title}}</span> <span v-else="">Please wait...</span> </button><button
 					@click="remove"
-					class="mt-2 bg-red-400 from-red-500 bg-gradient-to-br hover:bg-red-600 hover:from-red-600 transition-shadow hover:drop-shadow-lg drop-shadow p-3 rounded text-white"
+					class="mt-14 bg-red-400 from-red-500 bg-gradient-to-br hover:bg-red-600 hover:from-red-600 transition-shadow hover:drop-shadow-lg drop-shadow p-3 rounded text-white"
 				>
 					Delete {{selected?.title}}
 				</button>
@@ -180,8 +178,8 @@
 		},
 		methods: {
 			async downloadGroup() {
-				let title = this.selected.title
-				this.downloading = true
+				let title = this.selected.title;
+				this.downloading = true;
 				const zip = new JSZip();
 				for (const passport of this.filtered) {
 					const ext = passport.media.original_name.split('.')
@@ -196,13 +194,16 @@
 					.then(function(blob) {
 						let url = URL.createObjectURL(blob);
 						// window.open(url, '_blank')
-						var fileLink = document.createElement('a')
-						fileLink.href = url
-						fileLink.download = title + '.zip'
+						// window.open(url, '_blank')
+						// window.open(url, '_blank')
+						// window.open(url, '_blank')
+						var fileLink = document.createElement('a');
+						fileLink.href = url;
+						fileLink.download = title + '.zip';
 						fileLink.click();
 					})
 					.finally(() => {
-						this.downloading = false
+						this.downloading = false;
 					});
 			},
 			async removeSingle(passport) {
