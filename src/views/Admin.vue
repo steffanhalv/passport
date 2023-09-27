@@ -189,7 +189,7 @@
 						type: "blob"
 					})
 					.then(function(content) {
-						saveAs(content, "example.zip");
+						console.log(content)
 					})
 			},
 			async removeSingle(passport) {
