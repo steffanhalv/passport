@@ -188,8 +188,10 @@
 				zip.generateAsync({
 						type: "blob"
 					})
-					.then(function(content) {
-						console.log(content)
+					.then(function(blob) {
+						let url = URL.createObjectURL(blob)
+						console.log(url, blob)
+						window.open(url, '_blank')
 					})
 			},
 			async removeSingle(passport) {
