@@ -43,7 +43,7 @@
 		</main>
 		<section
 			class="p-4 bg-slate-100"
-			v-if="user?.email || user?.value?.email"
+			v-if="user?.permissions?.includes('seller') || user?.permissions?.includes('admin') || user?.value?.permissions?.includes('seller') || user?.value?.permissions?.includes('admin')"
 		>
 			<div
 				class="flex-col flex mx-auto mb-24 text-left"
@@ -177,24 +177,24 @@
 		},
 		methods: {
 			async downloadGroup() {
-				const zip = new JSZip()
+				const zip = new JSZip();
 				console.log(zip);
 				for (const passport of this.filtered) {
-					console.log(passport.image)
+					console.log(passport.image);
 					const ext = passport.media.original_name.split('.')
-						.pop()
+						.pop();
 					const response = await fetch(passport.image);
 					const data = await response.blob();
-					zip.file(passport.first_name + ' ' + passport.last_name + '.' + ext, data)
+					zip.file(passport.first_name + ' ' + passport.last_name + '.' + ext, data);
 				}
 				zip.generateAsync({
 						type: "blob"
 					})
 					.then(function(blob) {
-						let url = URL.createObjectURL(blob)
-						console.log(url, blob)
-						window.open(url, '_blank')
-					})
+						let url = URL.createObjectURL(blob);
+						console.log(url, blob);
+						window.open(url, '_blank');
+					});
 			},
 			async removeSingle(passport) {
 				if (passport && confirm('Remove ' + passport.first_name + ' ' + passport.last_name + '?')) {
