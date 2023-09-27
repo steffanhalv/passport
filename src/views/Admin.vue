@@ -140,7 +140,7 @@
 	</div>
 </template>
 <script>
-	import jszip from 'jszip';
+	import JSZip from 'jszip';
 	export default {
 		inject: ["io", "user", "login", "logout"],
 		components: {},
@@ -177,10 +177,20 @@
 		},
 		methods: {
 			async downloadGroup() {
-				console.log(jszip);
+				const zip = new JSZip()
+				console.log(zip);
 				for (const passport of this.filtered) {
-					console.log(passport.image);
+					console.log(passport.image)
+					const ext = passport.media.original_name.split('.')
+						.pop()
+					zip.file(passport.first_name + ' ' + passport.last_name + '.' + ext, passport.image)
 				}
+				zip.generateAsync({
+						type: "blob"
+					})
+					.then(function(content) {
+						saveAs(content, "example.zip");
+					})
 			},
 			async removeSingle(passport) {
 				if (passport && confirm('Remove ' + passport.first_name + ' ' + passport.last_name + '?')) {
