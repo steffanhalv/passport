@@ -68,6 +68,11 @@
 						:value="group"
 					>{{group.title}}</option>
 				</select><button
+					@click="downloadGroup"
+					class="bg-green-400 from-green-500 mt-4 bg-gradient-to-br hover:bg-green-600 hover:from-green-600 transition-shadow hover:drop-shadow-lg drop-shadow p-3 rounded text-white"
+				>
+					Download Passports for {{selected?.title}}
+				</button><button
 					@click="remove"
 					class="mt-2 bg-red-400 from-red-500 bg-gradient-to-br hover:bg-red-600 hover:from-red-600 transition-shadow hover:drop-shadow-lg drop-shadow p-3 rounded text-white"
 				>
@@ -135,6 +140,7 @@
 	</div>
 </template>
 <script>
+	import jszip from 'jszip';
 	export default {
 		inject: ["io", "user", "login", "logout"],
 		components: {},
@@ -170,6 +176,12 @@
 			await this.listGroups();
 		},
 		methods: {
+			async downloadGroup() {
+				console.log(jszip);
+				for (const passport of this.filtered) {
+					console.log(passport.image);
+				}
+			},
 			async removeSingle(passport) {
 				if (passport && confirm('Remove ' + passport.first_name + ' ' + passport.last_name + '?')) {
 					await this.io.service('/types/passports')

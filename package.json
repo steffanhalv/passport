@@ -12,7 +12,8 @@
         "vue-router": "^4.1.6",
         "socket.io-client": "^4.7.1",
         "@feathersjs/client": "^5.0.7",
-        "moment": "^2.29.4"
+        "moment": "^2.29.4",
+        "jszip": "^3.10.1"
     },
     "devDependencies": {
         "@rollup/plugin-data-uri": "^1.0.2",
