@@ -183,7 +183,9 @@
 					console.log(passport.image)
 					const ext = passport.media.original_name.split('.')
 						.pop()
-					zip.file(passport.first_name + ' ' + passport.last_name + '.' + ext, passport.image)
+					const response = await fetch(passport.image);
+					const data = await response.blob();
+					zip.file(passport.first_name + ' ' + passport.last_name + '.' + ext, data)
 				}
 				zip.generateAsync({
 						type: "blob"
