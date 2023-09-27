@@ -11,7 +11,7 @@ import sio from 'socket.io-client'
 
 const user = ref()
 const app = createApp(App)
-const socket = sio('https://seetravel.admin.siglar.com', {
+const socket = sio('https://passport.vueplay.com', {
     transports: ['websocket', 'polling']
 })
 const io = feathers()
